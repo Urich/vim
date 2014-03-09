@@ -18,6 +18,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'actionshrimp/vim-xpath'
+
 
 " vim.org
 Bundle 'c.vim'
@@ -26,6 +28,14 @@ Bundle 'bufexplorer.zip'
 Bundle 'Mark'
 Bundle 'Tagbar'
 Bundle 'SuperTab'
+Bundle 'xmledit'
+"Bundle 'TagHighlight'
+
+Bundle 'indexer.tar.gz'
+"все зависимоти для indexer
+Bundle 'project.tar.gz'
+Bundle 'vimprj'
+Bundle 'DfrankUtil'
 
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
@@ -37,7 +47,7 @@ Bundle 'SuperTab'
 " git repos on your local machine (ie. when working on your own plugin)
 "Bundle 'file:///Users/gmarik/path/to/plugin'
 " ...
-
+filetype on
 set nobackup                            "не создавать файлы с резервной копией (filename.txt~)"
 set history=50                          "сохранять 50 строк в истории командной строки
 set ruler                               "постоянно показывать позицию курсора
@@ -108,7 +118,7 @@ set iskeyword=@,48-57,_,192-255
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
 set statusline=%<%1*%f%h%m%r%*\ %b\ %2*%{&encoding}%*\ \ %l,%c\ %P
-"set statusline=%<%f%=%([%{tagbar#currenttag('socket ','')}]%)
+"set statusline=%{tagbar#currenttag('[%s]','notfound','s')}
 
 if has ("gui_running")
 	set list
@@ -166,7 +176,7 @@ if has("cscope")
 	nmap <C-g>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 
-set tags+=~/.tags/usc.tags
+"set tags+=~/.tags/usc.tags
 "set tags+=~/.tags/other.tags
 "set tags+=~/.tags/stl.tags
 "set tags+=~/.tags/gcc_4.5.0.tags
@@ -185,6 +195,9 @@ augroup fswitch-autocommands
 augroup END
 
 au BufRead,BufNewFile *.cpp,*.h set filetype=cpp
+
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
 
 "
 set cursorline
@@ -249,6 +262,10 @@ map <F10> :NERDTreeToggle<cr>
 vmap <F10> <esc>:NERDTreeToggle<cr>
 imap <F10> <esc>:NERDTreeToggle<cr>
 
+map <F11> :Project<cr>
+vmap <F11> <esc>:Project<cr>
+imap <F11> <esc>:Project<cr>
+
 map <silent> <F7> <Esc>:cprevious<CR>
 map <silent> <F8> <Esc>:cnext<CR>
 
@@ -257,6 +274,9 @@ map <C-c>mc :MarkClear <CR>
 
 vnoremap > >gv
 vnoremap < <gv
+
+inoremap <F5> :call g:ClangUpdateQuickFix()<CR>
+noremap <F5> :call g:ClangUpdateQuickFix()<CR>
 
 "nnoremap <Tab> >>_
 "nnoremap <S-Tab> <<_
@@ -335,17 +355,20 @@ let g:clang_snippets_engine="clang_complete"
 let g:clang_conceal_snippets=1
 let g:clang_exec="clang++"
 let g:clang_use_library=1
-let g:clang_library_path="/usr/lib/llvm"
+let g:clang_library_path="/usr/lib/"
 let g:clang_sort_algo="priority"
 let g:clang_complete_macros=1
 let g:clang_complete_patterns=1
 let g:clang_periodic_quickfix=0
 let g:clang_close_preview=0
 let g:clang_trailing_placeholder=1
+let g:clang_jumpto_declaration_key="<C-[>"
+"let g:clang_jumpto_back_key="<M-b>"
+
 "let g:clang_compilation_database="~/.vim/db"
-"
+
 set conceallevel=2
-set concealcursor=vin
+set concealcursor=inv
 let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
 
 "
@@ -396,7 +419,7 @@ function! CreatecUscscope()
 	execute "!cscope -Rbqk -i ~/.cscope.vim/usc/cscope.files -f ~/.cscope.vim/usc/cscope.out"
 endfunction
 
-map <F5> :call UpdateUsccscope()<CR>
+map <S-F5> :call UpdateUsccscope()<CR>
 
 function! Test()
 	echo 'test'
