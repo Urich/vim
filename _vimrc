@@ -11,7 +11,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
-"
 " repos on github
 Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/ctrlp.vim'
@@ -19,7 +18,11 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'actionshrimp/vim-xpath'
-
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
+Bundle 'xolox/vim-session'
+Bundle 'MattesGroeger/vim-bookmarks'
+Bundle 'xolox/vim-misc'
 
 " vim.org
 Bundle 'c.vim'
@@ -29,7 +32,9 @@ Bundle 'Mark'
 Bundle 'Tagbar'
 Bundle 'SuperTab'
 Bundle 'xmledit'
-"Bundle 'TagHighlight'
+"Bundle 'ManPageView'
+Bundle 'TagHighlight'
+
 
 Bundle 'indexer.tar.gz'
 "все зависимоти для indexer
@@ -142,7 +147,7 @@ if has ("gui_running")
 	set cursorline
 	colorscheme darkspectrum
 "	colorscheme slate
-	set guifont=Terminus
+	set guifont=Terminus\ 12
 endif
 
 
@@ -198,7 +203,9 @@ au BufRead,BufNewFile *.cpp,*.h set filetype=cpp
 
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
-
+" save folding state
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
 "
 set cursorline
 "set cursorcolumn
@@ -248,8 +255,8 @@ imap <C-c>4 <ESC>:FSSplitBelow<CR><Insert>
 
 "imap <F3> <Esc>:TlistToggle<CR>:TlistUpdate<CR>
 "nmap <F3> :TlistToggle<CR>:TlistUpdate<CR>
-nmap <F3> :TagbarToggle<CR>
-imap <F3> <ESC>:TagbarToggle<CR>
+nmap <silent> <F3> :TagbarOpen fj<CR>
+imap <silent> <F3> <ESC>:TagbarOpen fj<CR>
 
 map <F4> :BufExplorer<cr>
 vmap <F4> <esc>:BufExplorer<cr>
@@ -262,9 +269,11 @@ map <F10> :NERDTreeToggle<cr>
 vmap <F10> <esc>:NERDTreeToggle<cr>
 imap <F10> <esc>:NERDTreeToggle<cr>
 
-map <F11> :Project<cr>
-vmap <F11> <esc>:Project<cr>
-imap <F11> <esc>:Project<cr>
+"map <F11> :Project<cr>
+"vmap <F11> <esc>:Project<cr>
+"imap <F11> <esc>:Project<cr>
+nmap <silent> <F11> <Plug>ToggleProject
+map <silent> <F11> <Plug>ToggleProject
 
 map <silent> <F7> <Esc>:cprevious<CR>
 map <silent> <F8> <Esc>:cnext<CR>
@@ -316,15 +325,18 @@ let g:tagbar_left = 1
 let g:tagbar_sort = 0
 let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 1
-let g:tagbar_compact = 1
-let g:tagbar_expand = 1
+let g:tagbar_compact = 0
+let g:tagbar_expand = 0
 let g:tagbar_autoshowtag = 1
+let g:tagbar_show_visibility = 1
+let g:tagbar_show_linenumbers = 1
+let g:tagbar_autopreview = 0
 
 " формат строки с ошибкой для gcc и sdcc, это нужно для errormarker
 let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 
 let g:bufExplorerFindActive=1
-let g:bufExplorerShowDirectories=1
+let g:bufExplorerShowDirectories=0
 let g:bufExplorerShowTabBuffer=1
 let g:bufExplorerShowUnlisted=0
 let g:bufExplorerSortBy='name'
@@ -345,13 +357,12 @@ let g:clang_user_options='-std=c++x11'
 let g:clang_debug=1
 "let g:clang_auto_user_options=""
 let g:clang_auto_user_options="path,.clang_complete"
-let g:clang_auto_select=1
-let g:clang_complete_auto=1
+let g:clang_auto_select=0
+let g:clang_complete_auto=0
 let g:clang_complete_copen=1
 let g:clang_hl_errors=1
 let g:clang_snippets=1
-let g:clang_snippets_engine="clang_complete"
-"let g:clang_snippets_engine="snipmate"
+let g:clang_snippets_engine="ultisnips"
 let g:clang_conceal_snippets=1
 let g:clang_exec="clang++"
 let g:clang_use_library=1
@@ -371,6 +382,13 @@ set conceallevel=2
 set concealcursor=inv
 let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
 
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 "
 let g:manpageview_winopen   = "tab"
 let g:manpageview_pgm_i     = "info"
@@ -378,6 +396,8 @@ let g:manpageview_options_i = "--output=-"
 let g:manpageview_syntax_i  = "info"
 let g:manpageview_K_i       = "<sid>ManPageInfo(0)"
 let g:manpageview_init_i    = "call ManPageInfoInit()"
+
+let g:session_autosave = 'no'
 
 " disable replace mode
 "function s:ForbidReplace()
@@ -425,6 +445,39 @@ function! Test()
 	echo 'test'
 	return expand('%:p')
 endfunction
+
+
+" Set &printoptions to include papersize
+
+" Set &printoptions to include papersize
+if filereadable("/etc/papersize")
+    let s:papersize = matchstr(system('/bin/cat /etc/papersize'), '\p*')
+    if strlen(s:papersize)
+        let &printoptions = "paper:" . s:papersize
+   endif
+  unlet! s:papersize
+endif
+
+" Set printexpr to allow command options
+
+" Function to enable command options for :hardcopy
+"function! PrintFile(fname,fcmdarg)
+"	echo 'test'
+"	echo fcmdarg
+"    call system('lpr' . ' ' . (&printdevice == '' ? '' : ' -P' . &printdevice) . ' ' . a:fname)
+"    call delete(a:fname)
+"    return v:shell_error
+"endfunc
+
+set printdevice="HP_LaserJet_Professional_P1102"
+"set printexpr=system('lpr' . (&printdevice == '' ? '' : ' -P' . &printdevice) . ' ' . v:fname_in) . delete(v:fname_in) + v:shell_error
+"set printexpr=system('lpr'.&printdevice.''.v:fname_in)
+
+"let &printoptions = &printoptions . ",syntax:n"
+
+" Set printexpr to allow command options
+"set pdev="HP_LaserJet_Professional_P1102"
+"set printexpr=PrintFile(v:fname_in,v:cmdarg)
 
 "map <F6> :call Test()<CR>
 "set wildmenu
