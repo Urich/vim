@@ -97,8 +97,8 @@ set nocompatible
 set nu                                   "отображать номера строк"
 set foldenable
 set foldmethod=syntax
-set foldcolumn=6
-set foldlevelstart=1
+set foldcolumn=10
+"set foldlevelstart=1
 set ch=1
 set laststatus=2
 set nocp
@@ -194,18 +194,17 @@ hi User2 guifg=Red
 augroup fswitch-autocommands
 	au BufEnter *.cpp let b:fswitchdst  = 'h,hpp'
 	au BufEnter *.cpp let b:fswitchlocs = './,./include/,../include'
-
-    au BufEnter *.h let b:fswitchdst  = 'c,cpp'
+        au BufEnter *.h let b:fswitchdst  = 'c,cpp'
 	au BufEnter *.h let b:fswitchlocs = '../src,../,./'
 augroup END
 
 au BufRead,BufNewFile *.cpp,*.h set filetype=cpp
 
-let g:xml_syntax_folding=1
-au FileType xml setlocal foldmethod=syntax
+"let g:xml_syntax_folding=1
+"au FileType xml setlocal foldmethod=syntax
 " save folding state
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+"au BufWinLeave * mkview
+"au BufWinEnter * silent loadview
 "
 set cursorline
 "set cursorcolumn
@@ -333,13 +332,13 @@ let g:tagbar_show_linenumbers = 1
 let g:tagbar_autopreview = 0
 
 " формат строки с ошибкой для gcc и sdcc, это нужно для errormarker
-let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
+"let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 
 let g:bufExplorerFindActive=1
 let g:bufExplorerShowDirectories=0
 let g:bufExplorerShowTabBuffer=1
 let g:bufExplorerShowUnlisted=0
-let g:bufExplorerSortBy='name'
+let g:bufExplorerSortBy='mru'
 let g:bufExplorerSplitBelow=1
 let g:bufExplorerSplitOutPathName=0
 let g:bufExplorerSplitRight=0
@@ -354,7 +353,7 @@ let g:bufExplorerSplitRight=0
 let g:clang_user_options='-std=c++x11'
 ""let g:clang_user_options = '-std=c++0x -x c++ 2> NUL || exit 0"
 "let g:clang_user_options = '-x c++ || exit 0'
-let g:clang_debug=1
+let g:clang_debug=0
 "let g:clang_auto_user_options=""
 let g:clang_auto_user_options="path,.clang_complete"
 let g:clang_auto_select=0
@@ -399,24 +398,20 @@ let g:manpageview_init_i    = "call ManPageInfoInit()"
 
 let g:session_autosave = 'no'
 
-" disable replace mode
-"function s:ForbidReplace()
-"    if v:insertmode!=#'i'
-"        call feedkeys("\<Insert>", "n")
-"    endif
-"endfunction
-"augroup ForbidReplaceMode
-"    autocmd!
-"    autocmd InsertEnter  * call s:ForbidReplace()
-"    autocmd InsertChange * call s:ForbidReplace()
-"augroup END
-
 autocmd BufRead,BufNewFile  *.cpp  set filetype=cpp
 
 let g:C_Ctrl_j     = 'no'
 let g:C_CplusCFlags = '-Wall -std=c++0x -g -O0 -c'
 let g:C_CFlags = '-Wall -g -O0 -c'
 let g:C_LFlags = '-Wall -g -O0'
+
+let g:multi_cursor_start_key='<F6>'
+let g:multi_cursor_use_default_mapping=1
+let g:multi_cursor_exit_from_visual_mode=1
+let g:multi_cursor_exit_from_insert_mode=1
+
+highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
+highlight link multiple_cursors_visual Visual
 
 function! UpdateUsrcscope()
 	!find /usr/include -name '*.cpp' -o -name '*.h'>~/.cscope.vim/usr/cscope.files
@@ -439,7 +434,7 @@ function! CreatecUscscope()
 	execute "!cscope -Rbqk -i ~/.cscope.vim/usc/cscope.files -f ~/.cscope.vim/usc/cscope.out"
 endfunction
 
-map <S-F5> :call UpdateUsccscope()<CR>
+"map <S-F5> :call UpdateUsccscope()<CR>
 
 function! Test()
 	echo 'test'
@@ -491,4 +486,9 @@ set printdevice="HP_LaserJet_Professional_P1102"
 "menu Exec.mc        :!mc<CR>
 "menu Exec.xterm_mc  :!xterm -e mc<CR>
 "map <F11> :emenu Exec.<Tab>
+
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+highlight lCursor guifg=NONE guibg=Cyan
 

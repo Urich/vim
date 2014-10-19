@@ -1,0 +1,83 @@
+
+server=~/develop/project/usc/server flags=r {
+	makefile
+	sources=./src filter="*.cpp" {
+		main.cpp
+		plugin.cpp
+		config.cpp
+	}
+	config=.
+	{
+		config.cfg
+	}
+	include=./include filter="*.h" {
+		plugin.h
+		commandline.h
+		config.h
+		server.h
+	}
+}
+
+liblog=~/develop/project/usc/liblog flags=r {
+	makefile
+	sources=./src {
+		logger.cpp
+	}
+	inlcude=./include {
+		logger.h
+	}
+	unittest=./test	{
+		main.cpp
+	}
+}
+
+libsystem=~/develop/project/usc/libsystem flags=r {
+	makefile
+	sources=./src {
+		network.cpp
+		options.cpp
+		transport.cpp
+	}
+	include=./include {
+		network.h
+		options.h
+		transport.h
+	}
+	unittest=./test	{
+		main.cpp
+	}
+}
+
+libplatform=~/develop/project/usc/libplatform flags=r {
+	makefile
+	sources=./src {
+		message.cpp
+		platform.cpp
+		queue.cpp
+		smartpoint.cpp
+		thread.cpp
+		facade.cpp
+	}
+	include=./include {
+		backtrace.h
+		exception.h
+		message.h
+		platform.h
+		queue.h
+		smartpoint.h
+		thread.h
+		type_any.h
+		types.h
+		facade.h
+	}
+	unittest=./test {
+		main.cpp
+	}
+}
+
+common=~/develop/project/usc/common flags=r {
+	usctimes.h
+	convertion.h
+	common.h
+}
+
