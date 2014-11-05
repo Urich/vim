@@ -23,11 +23,12 @@ Bundle 'honza/vim-snippets'
 Bundle 'xolox/vim-session'
 Bundle 'MattesGroeger/vim-bookmarks'
 Bundle 'xolox/vim-misc'
+Bundle 'vim-scripts/Gundo'
 
 " vim.org
 Bundle 'c.vim'
 Bundle 'FSwitch'
-Bundle 'bufexplorer.zip'
+"Bundle 'bufexplorer.zip'
 Bundle 'Mark'
 Bundle 'Tagbar'
 Bundle 'SuperTab'
@@ -251,17 +252,15 @@ imap <C-c>3 <ESC>:FSSplitLeft<CR><Insert>
 map <C-c>4 :FSSplitBelow<CR>
 imap <C-c>4 <ESC>:FSSplitBelow<CR><Insert>
 
-
-"imap <F3> <Esc>:TlistToggle<CR>:TlistUpdate<CR>
-"nmap <F3> :TlistToggle<CR>:TlistUpdate<CR>
 nmap <silent> <F3> :TagbarOpen fj<CR>
 imap <silent> <F3> <ESC>:TagbarOpen fj<CR>
 
-map <F4> :BufExplorer<cr>
-vmap <F4> <esc>:BufExplorer<cr>
-imap <F4> <esc>:BufExplorer<cr>
+map <F4> :CtrlPBuffer<cr>
+vmap <F4> <esc>:CtrlPBuffer<cr>
+imap <F4> <esc>:CtrlPBuffer<cr>
 
-"imap <C-Space> <C-x><C-o>
+nnoremap <C-h> :GundoToggle<CR>
+
 imap <C-Space> <c-x><c-u>
 
 map <F10> :NERDTreeToggle<cr>
@@ -285,6 +284,7 @@ vnoremap < <gv
 
 inoremap <F5> :call g:ClangUpdateQuickFix()<CR>
 noremap <F5> :call g:ClangUpdateQuickFix()<CR>
+
 
 "nnoremap <Tab> >>_
 "nnoremap <S-Tab> <<_
@@ -342,6 +342,10 @@ let g:bufExplorerSortBy='mru'
 let g:bufExplorerSplitBelow=1
 let g:bufExplorerSplitOutPathName=0
 let g:bufExplorerSplitRight=0
+
+let g:gundo_width = 60
+let g:gundo_preview_height = 40
+let g:gundo_right = 0
 
 "imap <F6>:call ClangUpdateQuickFix()<CR>
 
