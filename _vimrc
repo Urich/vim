@@ -40,6 +40,8 @@ Bundle 'indexer.tar.gz'
 Bundle 'project.tar.gz'
 Bundle 'vimprj'
 Bundle 'DfrankUtil'
+Bundle 'grep.vim'
+
 
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
