@@ -24,21 +24,19 @@ Bundle 'xolox/vim-session'
 Bundle 'MattesGroeger/vim-bookmarks'
 Bundle 'xolox/vim-misc'
 Bundle 'vim-scripts/Gundo'
+Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-fugitive'
+Bundle 'airblade/vim-gitgutter'
 
 " vim.org
 Bundle 'c.vim'
 Bundle 'FSwitch'
-"Bundle 'bufexplorer.zip'
 Bundle 'Mark'
 Bundle 'Tagbar'
 Bundle 'SuperTab'
 Bundle 'xmledit'
-"Bundle 'ManPageView'
 Bundle 'TagHighlight'
-
-
 Bundle 'indexer.tar.gz'
-"все зависимоти для indexer
 Bundle 'project.tar.gz'
 Bundle 'vimprj'
 Bundle 'DfrankUtil'
@@ -79,17 +77,17 @@ set t_Co=256                            "включаем поддержку 256
 set wildmenu                            "красивое автодополнение
 set wcm=<Tab>                           "WTF? but all work
 "set whichwrap=<,>,[,],h,l               "не останавливаться курсору на конце строки
-"set autowrite                           "автоматом записывать изменения в файл при переходе к другому файлу
+set autowrite                           "автоматом записывать изменения в файл при переходе к другому файлу
 set encoding=utf8                       "кодировка по дефолту
 set termencoding=utf8                   "Кодировка вывода на терминал
 set fileencodings=utf8,cp1251,koi8r,cp866     "Возможные кодировки файлов (автоматическая перекодировка)
 set showcmd showmode                    "показывать незавершенные команды и текущий режим
-" set splitbelow                          "новое окно появляется снизу
-" set autochdir                           "текущий каталог всегда совпадает с содержимым активного окна
+set splitbelow                          "новое окно появляется снизу
+set autochdir                           "текущий каталог всегда совпадает с содержимым активного окна
 set stal=2                              "постоянно выводим строку с табами
 set tpm=100                             "максимальное количество открытых табов
 set wak=yes                             "используем ALT как обычно, а не для вызова пункта мени
-set dir=~/.vim/swapfiles                "каталог для сохранения своп-файлов
+"set dir=~/.vim/swapfiles                "каталог для сохранения своп-файлов
 set noex                                "не читаем файл конфигурации из текущей директории
 set ssop+=resize                        "сохраняем в сессии размер окон Vim'а
 set clipboard=unnamedplus
@@ -101,7 +99,7 @@ set foldmethod=syntax
 set foldcolumn=10
 "set foldlevelstart=1
 set ch=1
-set laststatus=2
+set laststatus=1
 set nocp
 set ft=bash
 set completeopt=menu,longest
@@ -123,7 +121,7 @@ set iskeyword=@,48-57,_,192-255
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
-set statusline=%<%1*%f%h%m%r%*\ %b\ %2*%{&encoding}%*\ \ %l,%c\ %P
+"set statusline=%<%1*%f%h%m%r%*\ %b\ %2*%{&encoding}%*\ \ %l,%c\ %P
 "set statusline=%{tagbar#currenttag('[%s]','notfound','s')}
 
 if has ("gui_running")

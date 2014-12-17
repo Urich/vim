@@ -5,9 +5,9 @@ server=~/develop/project/usc/server flags=r {
 		main.cpp
 		plugin.cpp
 		config.cpp
+		server.cpp
 	}
-	config=.
-	{
+	config=. {
 		config.cfg
 	}
 	include=./include filter="*.h" {
@@ -15,6 +15,18 @@ server=~/develop/project/usc/server flags=r {
 		commandline.h
 		config.h
 		server.h
+	}
+	unittest=./test {
+		main.cpp
+	}
+}
+
+client=~/develop/project/usc flags=r {
+	console=./client_console {
+		makefile
+		sources=./src {
+			main.cpp
+		}
 	}
 }
 
@@ -52,6 +64,7 @@ libplatform=~/develop/project/usc/libplatform flags=r {
 	makefile
 	sources=./src {
 		message.cpp
+		actions.cpp
 		platform.cpp
 		queue.cpp
 		smartpoint.cpp
@@ -62,6 +75,7 @@ libplatform=~/develop/project/usc/libplatform flags=r {
 		backtrace.h
 		exception.h
 		message.h
+		actions.h
 		platform.h
 		queue.h
 		smartpoint.h
