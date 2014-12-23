@@ -6,6 +6,7 @@ server=~/develop/project/usc/server flags=r {
 		plugin.cpp
 		config.cpp
 		server.cpp
+		protocols.cpp
 	}
 	config=. {
 		config.cfg
@@ -15,6 +16,7 @@ server=~/develop/project/usc/server flags=r {
 		commandline.h
 		config.h
 		server.h
+		protocols.h
 	}
 	unittest=./test {
 		main.cpp
