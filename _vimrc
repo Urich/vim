@@ -12,7 +12,7 @@ Bundle 'gmarik/vundle'
 
 " My Bundles here:
 " repos on github
-Bundle 'Rip-Rip/clang_complete'
+"Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'octol/vim-cpp-enhanced-highlight'
@@ -27,7 +27,6 @@ Bundle 'vim-scripts/Gundo'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
-
 " vim.org
 Bundle 'c.vim'
 Bundle 'FSwitch'
@@ -36,12 +35,15 @@ Bundle 'Tagbar'
 Bundle 'SuperTab'
 Bundle 'xmledit'
 Bundle 'TagHighlight'
-Bundle 'indexer.tar.gz'
+"Bundle 'indexer.tar.gz'
 Bundle 'project.tar.gz'
-Bundle 'vimprj'
+"Bundle 'vimprj'
 Bundle 'DfrankUtil'
 Bundle 'grep.vim'
-
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+"Bundle 'SkidanovAlex/CtrlK'
+Bundle 'Valloric/YouCompleteMe'
 
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
@@ -107,7 +109,7 @@ set ft=bash
 set completeopt=menu,longest
 "set completeopt=menuone,menu,longest,preview
 set autoread
-let mapleader = ","
+"let mapleader = ","
 set cmdheight=2
 set laststatus=2
 set lazyredraw
@@ -261,7 +263,7 @@ imap <F4> <esc>:CtrlPBuffer<cr>
 
 nnoremap <C-h> :GundoToggle<CR>
 
-imap <C-Space> <c-x><c-u>
+"imap <C-Space> <c-x><c-u>
 
 map <F10> :NERDTreeToggle<cr>
 vmap <F10> <esc>:NERDTreeToggle<cr>
@@ -282,9 +284,8 @@ map <C-c>mc :MarkClear <CR>
 vnoremap > >gv
 vnoremap < <gv
 
-inoremap <F5> :call g:ClangUpdateQuickFix()<CR>
-noremap <F5> :call g:ClangUpdateQuickFix()<CR>
-
+"inoremap <F5> :call g:ClangUpdateQuickFix()<CR>
+"noremap <F5> :call g:ClangUpdateQuickFix()<CR>
 
 "nnoremap <Tab> >>_
 "nnoremap <S-Tab> <<_
@@ -379,7 +380,29 @@ let g:clang_trailing_placeholder=1
 let g:clang_jumpto_declaration_key="<C-[>"
 "let g:clang_jumpto_back_key="<M-b>"
 
-"let g:clang_compilation_database="~/.vim/db"
+let g:ycm_auto_trigger = 0
+highlight YcmErrorLine guibg=#3f0000
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+nnoremap <leader>gt :YcmCompleter GoTo<CR>
+nnoremap <leader>gdd :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gde :YcmCompleter GoToDefinition<CR>
+
+let g:ycm_filetype_whitelist = { '*': 1 }
+let g:ycm_filetype_blacklist = {
+        \ 'tagbar' : 1,
+        \ 'qf' : 1,
+        \ 'notes' : 1,
+        \ 'markdown' : 1,
+        \ 'unite' : 1,
+        \ 'text' : 1,
+        \ 'vimwiki' : 1,
+        \ 'pandoc' : 1,
+        \ 'infolog' : 1,
+        \ 'project' : 1
+        \}
+
+let g:ycm_warning_symbol = '!!'
+let g:ycm_confirm_extra_conf = 0
 
 set conceallevel=2
 set concealcursor=inv
@@ -417,35 +440,6 @@ let g:multi_cursor_exit_from_insert_mode=1
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
 
-function! UpdateUsrcscope()
-	!find /usr/include -name '*.cpp' -o -name '*.h'>~/.cscope.vim/usr/cscope.files
-	execute "!cscope -Rbqk -i ~/.cscope.vim/usr/cscope.files -f ~/.cscope.vim/usr/cscope.out"
-	cs reset
-"	execute "!ctags -L ~/.cscope.vim/usr/cscope.files -f ~/.tags/usctag --c++-kinds=+p --fields=+iaS --extra=+q --sort=foldcase"
-
-	"	execute "!ctags -f - --format=2 --excmd=pattern --extra= --fields=nksaSmt ~/.cscope.vim/usr/cscope.files"
-endfunction
-
-function! UpdateUsccscope()
-	!find ~/develop/project/usc -name '*.cpp' -o -name '*.h'>~/.cscope.vim/usc/cscope.files
-	execute "!cscope -bqk -i ~/.cscope.vim/usc/cscope.files -f ~/.cscope.vim/usc/cscope.out"
-	cs reset
-	execute "!ctags -L ~/.cscope.vim/usc/cscope.files -f ~/.tags/usc.tags --c++-kinds=+p --fields=+iaS --extra=+q --sort=foldcase"
-endfunction
-
-function! CreatecUscscope()
-	!find ~/develop/project/usc -name '*.cpp' -o -name '*.h'>~/.cscope.vim/usc/cscope.files
-	execute "!cscope -Rbqk -i ~/.cscope.vim/usc/cscope.files -f ~/.cscope.vim/usc/cscope.out"
-endfunction
-
-"map <S-F5> :call UpdateUsccscope()<CR>
-
-function! Test()
-	echo 'test'
-	return expand('%:p')
-endfunction
-
-
 " Set &printoptions to include papersize
 
 " Set &printoptions to include papersize
@@ -457,39 +451,7 @@ if filereadable("/etc/papersize")
   unlet! s:papersize
 endif
 
-" Set printexpr to allow command options
-
-" Function to enable command options for :hardcopy
-"function! PrintFile(fname,fcmdarg)
-"	echo 'test'
-"	echo fcmdarg
-"    call system('lpr' . ' ' . (&printdevice == '' ? '' : ' -P' . &printdevice) . ' ' . a:fname)
-"    call delete(a:fname)
-"    return v:shell_error
-"endfunc
-
 set printdevice="HP_LaserJet_Professional_P1102"
-"set printexpr=system('lpr' . (&printdevice == '' ? '' : ' -P' . &printdevice) . ' ' . v:fname_in) . delete(v:fname_in) + v:shell_error
-"set printexpr=system('lpr'.&printdevice.''.v:fname_in)
-
-"let &printoptions = &printoptions . ",syntax:n"
-
-" Set printexpr to allow command options
-"set pdev="HP_LaserJet_Professional_P1102"
-"set printexpr=PrintFile(v:fname_in,v:cmdarg)
-
-"map <F6> :call Test()<CR>
-"set wildmenu
-"set wcm=<Tab>
-"menu Exec.GForth  :!gforth % <CR>
-"menu Exec.Perl    :!perl % <CR>
-"menu Exec.Python  :!python % <CR>
-"menu Exec.Ruby    :!ruby % <CR>
-"menu Exec.bash      :!/bin/bash<CR>
-"menu Exec.xterm     :!xterm<CR>
-"menu Exec.mc        :!mc<CR>
-"menu Exec.xterm_mc  :!xterm -e mc<CR>
-"map <F11> :emenu Exec.<Tab>
 
 set keymap=russian-jcukenwin
 set iminsert=0
