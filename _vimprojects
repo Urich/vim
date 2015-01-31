@@ -46,7 +46,7 @@ client=~/develop/project/usc flags=r {
 }
 
 liblog=~/develop/project/usc/liblog flags=r {
-	makefile
+	CMakeLists.txt
 	sources=./src {
 		logger.cpp
 	}
@@ -79,6 +79,7 @@ libsystem=~/develop/project/usc/libsystem flags=r {
 
 libplatform=~/develop/project/usc/libplatform flags=r {
 	makefile
+	CMakeLists.txt
 	sources=./src {
 		message.cpp
 		actions.cpp
