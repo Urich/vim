@@ -30,6 +30,19 @@ client=~/develop/project/usc flags=r {
 			main.cpp
 		}
 	}
+	gui=./client_gui/client_admin {
+		admin.pro
+		sources=./src {
+			main.cpp
+		}
+	}
+	gui=./client_gui/client_widgets {
+		libuscwidget.pro
+		sources=./about {
+			about_f.cpp
+			about_f.h
+		}
+	}
 }
 
 liblog=~/develop/project/usc/liblog flags=r {
@@ -51,11 +64,13 @@ libsystem=~/develop/project/usc/libsystem flags=r {
 		network.cpp
 		options.cpp
 		transport.cpp
+		datasource.cpp
 	}
 	include=./include {
 		network.h
 		options.h
 		transport.h
+		datasource.h
 	}
 	unittest=./test	{
 		main.cpp
