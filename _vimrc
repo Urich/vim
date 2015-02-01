@@ -35,9 +35,9 @@ Bundle 'Tagbar'
 Bundle 'SuperTab'
 Bundle 'xmledit'
 Bundle 'TagHighlight'
-"Bundle 'indexer.tar.gz'
+Bundle 'indexer.tar.gz'
 Bundle 'project.tar.gz'
-"Bundle 'vimprj'
+Bundle 'vimprj'
 Bundle 'DfrankUtil'
 Bundle 'grep.vim'
 Bundle 'L9'
@@ -107,6 +107,8 @@ set laststatus=1
 set nocp
 set ft=bash
 set completeopt=menu,longest
+"set completeopt=menu,preview
+"set wildmode=longest,list:longest
 "set completeopt=menuone,menu,longest,preview
 set autoread
 "let mapleader = ","
@@ -403,18 +405,27 @@ let g:ycm_filetype_blacklist = {
 
 let g:ycm_warning_symbol = '!!'
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_complete_in_comments = 0
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_autoclose_preview_window_after_completion = 0
+let g:ycm_autoclose_preview_window_after_insertion = 0
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+"let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=['<Up>']
+let g:ycm_use_ultisnips_completer = 1
+let g:ycm_always_populate_location_list = 1
 
-set conceallevel=2
-set concealcursor=inv
-let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+"set conceallevel=2
+"set concealcursor=inv
+"let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsListSnippets="<c-s-tab>"
+"let g:UltiSnipsExpandTrigger="<c-c>c"
+"let g:UltiSnipsJumpForwardTrigger="<c-c>b"
+"let g:UltiSnipsJumpBackwardTrigger="<c-c>n"
+"let g:UltiSnipsEditSplit="vertical"
 "
 let g:manpageview_winopen   = "tab"
 let g:manpageview_pgm_i     = "info"
@@ -424,6 +435,8 @@ let g:manpageview_K_i       = "<sid>ManPageInfo(0)"
 let g:manpageview_init_i    = "call ManPageInfoInit()"
 
 let g:session_autosave = 'no'
+
+let g:indexer_ctagsCommandLineOptions = "--c++-kinds=+p+l --fields=+iaSl --extra=+q"
 
 autocmd BufRead,BufNewFile  *.cpp  set filetype=cpp
 

@@ -1,6 +1,6 @@
 
 server=~/develop/project/usc/server flags=r {
-	makefile
+	CMakeLists.txt
 	sources=./src filter="*.cpp" {
 		main.cpp
 		plugin.cpp
@@ -59,7 +59,7 @@ liblog=~/develop/project/usc/liblog flags=r {
 }
 
 libsystem=~/develop/project/usc/libsystem flags=r {
-	makefile
+	CMakeLists.txt
 	sources=./src {
 		network.cpp
 		options.cpp
@@ -78,7 +78,6 @@ libsystem=~/develop/project/usc/libsystem flags=r {
 }
 
 libplatform=~/develop/project/usc/libplatform flags=r {
-	makefile
 	CMakeLists.txt
 	sources=./src {
 		message.cpp
@@ -88,6 +87,7 @@ libplatform=~/develop/project/usc/libplatform flags=r {
 		smartpoint.cpp
 		thread.cpp
 		facade.cpp
+		objectdata.cpp
 	}
 	include=./include {
 		backtrace.h
@@ -96,11 +96,11 @@ libplatform=~/develop/project/usc/libplatform flags=r {
 		actions.h
 		platform.h
 		queue.h
-		smartpoint.h
 		thread.h
 		type_any.h
 		types.h
 		facade.h
+		objectdata.h
 	}
 	unittest=./test {
 		main.cpp
