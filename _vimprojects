@@ -84,7 +84,6 @@ libplatform=~/develop/project/usc/libplatform flags=r {
 		actions.cpp
 		platform.cpp
 		queue.cpp
-		smartpoint.cpp
 		thread.cpp
 		facade.cpp
 		objectdata.cpp
