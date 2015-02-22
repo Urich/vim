@@ -55,7 +55,10 @@ Bundle 'Valloric/YouCompleteMe'
 " git repos on your local machine (ie. when working on your own plugin)
 "Bundle 'file:///Users/gmarik/path/to/plugin'
 " ...
+
 filetype on
+filetype plugin indent on
+
 set nobackup                            "не создавать файлы с резервной копией (filename.txt~)"
 set history=50                          "сохранять 50 строк в истории командной строки
 set ruler                               "постоянно показывать позицию курсора
@@ -405,28 +408,29 @@ let g:ycm_filetype_blacklist = {
 
 let g:ycm_warning_symbol = '!!'
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_complete_in_comments = 0
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_complete_in_comments = 1
+let g:ycm_collect_identifiers_from_tags_files = 0
+let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 0
 let g:ycm_autoclose_preview_window_after_insertion = 0
-let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_seed_identifiers_with_syntax = 0
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-"let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_select_completion=['<Down>']
 let g:ycm_key_list_previous_completion=['<Up>']
+"let g:ycm_key_list_select_completion = [‘<c-tab>’, ‘<Down>’]
+"let g:ycm_key_list_previous_completion = [‘<c-s-tab>’, ‘<Up>’]
 let g:ycm_use_ultisnips_completer = 1
-let g:ycm_always_populate_location_list = 1
+let g:ycm_always_populate_location_list = 0
 
-"set conceallevel=2
-"set concealcursor=inv
-"let g:SuperTabDefaultCompletionType='<c-x><c-u><c-p>'
-let g:UltiSnipsExpandTrigger="<c-tab>"
-let g:UltiSnipsListSnippets="<c-s-tab>"
-"let g:UltiSnipsExpandTrigger="<c-c>c"
-"let g:UltiSnipsJumpForwardTrigger="<c-c>b"
-"let g:UltiSnipsJumpBackwardTrigger="<c-c>n"
-"let g:UltiSnipsEditSplit="vertical"
-"
+let g:UltiSnipsUsePythonVersion = 2
+let g:UltiSnipsExpandTrigger = "<s-tab>"
+let g:UltiSnipsListSnippets = "<c-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+"let g:UltiSnipsSnippetDirectories=['~/.vim/bundle/ultisnips']
+"let g:UltiSnipsSnippetsDir=['~/.vim/bundle/vim-snippets/UltiSnips']
+set runtimepath+=~/.vim/bundle/ultisnips
+
 let g:manpageview_winopen   = "tab"
 let g:manpageview_pgm_i     = "info"
 let g:manpageview_options_i = "--output=-"
