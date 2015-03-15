@@ -64,12 +64,14 @@ libsystem=~/develop/project/usc/libsystem flags=r {
 		network.cpp
 		options.cpp
 		transport.cpp
+		compress.cpp
 		datasource.cpp
 	}
 	include=./include {
 		network.h
 		options.h
 		transport.h
+		compress.h
 		datasource.h
 	}
 	unittest=./test	{
