@@ -30,17 +30,27 @@ client=~/develop/project/usc flags=r {
 			main.cpp
 		}
 	}
-	gui=./client_gui/client_admin {
-		admin.pro
+	admin=./client_admin {
+		CMakeLists.txt
 		sources=./src {
-			main.cpp
+		main.cpp
+		mainwindow.cpp
+		widget_sessions.cpp
+		dialog_connect.cpp
+		}
+		include=./include {
+		mainwindow.h
+		widget_sessions.h
+		dialog_connect.h
 		}
 	}
-	gui=./client_gui/client_widgets {
-		libuscwidget.pro
-		sources=./about {
-			about_f.cpp
-			about_f.h
+	widget=./client_widgets {
+		CMakeLists.txt
+		sources=./src {
+		dialog_about.cpp
+		}
+		include=./include {
+		dialog_about.h
 		}
 	}
 }
@@ -66,6 +76,7 @@ libsystem=~/develop/project/usc/libsystem flags=r {
 		transport.cpp
 		compress.cpp
 		datasource.cpp
+		protocols.cpp
 	}
 	include=./include {
 		network.h
@@ -73,6 +84,7 @@ libsystem=~/develop/project/usc/libsystem flags=r {
 		transport.h
 		compress.h
 		datasource.h
+		protocols.h
 	}
 	unittest=./test	{
 		main.cpp
