@@ -33,24 +33,28 @@ client=~/develop/project/usc flags=r {
 	admin=./client_admin {
 		CMakeLists.txt
 		sources=./src {
-		main.cpp
-		mainwindow.cpp
-		widget_sessions.cpp
-		dialog_connect.cpp
+ 			main.cpp
+  			mainwindow.cpp
+			widget_sessions.cpp
+			dialog_connect.cpp
 		}
 		include=./include {
-		mainwindow.h
-		widget_sessions.h
-		dialog_connect.h
+			mainwindow.h
+			widget_sessions.h
+			dialog_connect.h
 		}
 	}
 	widget=./client_widgets {
 		CMakeLists.txt
 		sources=./src {
-		dialog_about.cpp
+			dialog_about.cpp
+			widget_base.cpp
+			queue_handler.cpp
 		}
 		include=./include {
-		dialog_about.h
+			dialog_about.h
+			widget_base.h
+			queue_handler.h
 		}
 	}
 }
