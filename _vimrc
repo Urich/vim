@@ -441,6 +441,7 @@ let g:manpageview_init_i    = "call ManPageInfoInit()"
 let g:session_autosave = 'no'
 
 let g:indexer_ctagsCommandLineOptions = "--c++-kinds=+p+l --fields=+iaSl --extra=+q"
+let g:indexer_disableCtagWarning=1
 
 autocmd BufRead,BufNewFile  *.cpp  set filetype=cpp
 
@@ -453,6 +454,8 @@ let g:multi_cursor_start_key='<F6>'
 let g:multi_cursor_use_default_mapping=1
 let g:multi_cursor_exit_from_visual_mode=1
 let g:multi_cursor_exit_from_insert_mode=1
+
+let g:proj_window_width = 50
 
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
