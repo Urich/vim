@@ -49,12 +49,12 @@ client=~/develop/project/usc flags=r {
 		sources=./src {
 			dialog_about.cpp
 			widget_base.cpp
-			queue_handler.cpp
+			widget_handler.cpp
 		}
 		include=./include {
 			dialog_about.h
 			widget_base.h
-			queue_handler.h
+			widget_handler.h
 		}
 	}
 }
