@@ -39,6 +39,7 @@ client=~/develop/project/usc flags=r {
 			dialog_connect.cpp
 		}
 		include=./include {
+			constants.h
 			mainwindow.h
 			widget_sessions.h
 			dialog_connect.h
