@@ -51,11 +51,13 @@ client=~/develop/project/usc flags=r {
 			dialog_about.cpp
 			widget_base.cpp
 			widget_handler.cpp
+			datamodels.cpp
 		}
 		include=./include {
 			dialog_about.h
 			widget_base.h
 			widget_handler.h
+			datamodels.h
 		}
 	}
 }

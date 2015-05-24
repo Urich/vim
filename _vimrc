@@ -82,7 +82,7 @@ set shiftwidth=4                        "число пробелов, испол
 "set expandtab                           "Заменяем табуляции пробелами (use :retab dude)
 set t_Co=256                            "включаем поддержку 256 цветов
 set wildmenu                            "красивое автодополнение
-set wcm=<Tab>                           "WTF? but all work
+"set wcm=<Tab>                           "WTF? but all work
 "set whichwrap=<,>,[,],h,l               "не останавливаться курсору на конце строки
 set autowrite                           "автоматом записывать изменения в файл при переходе к другому файлу
 set encoding=utf8                       "кодировка по дефолту
@@ -235,12 +235,12 @@ imap <C-c>e <Esc>:copen<CR>
 nmap <C-c>e :copen<CR>
 
 " Открытие\закрытие новой вкладки
-imap <C-t>t <Esc>:tabnew<CR>a
-nmap <C-t>t :tabnew<CR>
+inoremap <C-t>t <Esc>:tabnew<CR>a
+nnoremap <C-t>t :tabnew<CR>
 "переключение на следующую вкалдку
-map <C-Tab> :tabn<CR>
-vmap <C-Tab> <ESC>:tabn<CR>
-imap <C-Tab> <ESC>:tabn<CR>
+"noremap <C-t> :tabn<CR>
+vnoremap <C-t>n <ESC>:tabn<CR>
+inoremap <C-t>p <ESC>:tabp<CR>
 " перемещение окон
 map <kPlus> <C-W>+
 map <kMinus> <C-W>-
@@ -424,7 +424,7 @@ let g:ycm_always_populate_location_list = 0
 
 let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsExpandTrigger = "<s-tab>"
-let g:UltiSnipsListSnippets = "<c-tab>"
+let g:UltiSnipsListSnippets = "<c-l>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 "let g:UltiSnipsSnippetDirectories=['~/.vim/bundle/ultisnips']
@@ -447,8 +447,10 @@ autocmd BufRead,BufNewFile  *.cpp  set filetype=cpp
 
 let g:C_Ctrl_j     = 'no'
 let g:C_CplusCFlags = '-Wall -std=c++0x -g -O0 -c'
-let g:C_CFlags = '-Wall -g -O0 -c'
-let g:C_LFlags = '-Wall -g -O0'
+let g:C_CFlags = '-Wall -g -std=c++0x -c'
+let g:C_LFlags = '-Wall -g'
+"let g:C_CFlags = '-Wall -g -O0 -c'
+"let g:C_LFlags = '-Wall -g -O0'
 
 let g:multi_cursor_start_key='<F6>'
 let g:multi_cursor_use_default_mapping=1
