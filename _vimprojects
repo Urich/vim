@@ -108,6 +108,7 @@ libplatform=~/develop/project/usc/libplatform flags=r {
 		thread.cpp
 		facade.cpp
 		objectdata.cpp
+		type_variant.cpp
 	}
 	include=./include {
 		backtrace.h
@@ -118,6 +119,7 @@ libplatform=~/develop/project/usc/libplatform flags=r {
 		queue.h
 		thread.h
 		type_any.h
+		type_variant.h
 		types.h
 		facade.h
 		objectdata.h
