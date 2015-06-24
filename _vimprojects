@@ -84,6 +84,7 @@ libsystem=~/develop/project/usc/libsystem flags=r {
 		compress.cpp
 		datasource.cpp
 		protocols.cpp
+		protocol_data.cpp
 	}
 	include=./include {
 		network.h
@@ -92,6 +93,7 @@ libsystem=~/develop/project/usc/libsystem flags=r {
 		compress.h
 		datasource.h
 		protocols.h
+		protocol_data.h
 	}
 	unittest=./test	{
 		main.cpp

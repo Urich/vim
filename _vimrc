@@ -27,6 +27,7 @@ Bundle 'vim-scripts/Gundo'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
+
 " vim.org
 Bundle 'c.vim'
 Bundle 'FSwitch'
@@ -109,7 +110,7 @@ set ch=1
 set laststatus=1
 set nocp
 set ft=bash
-set completeopt=menu,longest
+"set completeopt=menu,longest
 "set completeopt=menu,preview
 "set wildmode=longest,list:longest
 "set completeopt=menuone,menu,longest,preview
@@ -122,6 +123,11 @@ set magic
 set nowb
 set noswapfile
 set pumheight=20
+
+set completeopt=menu,menuone
+set pumheight=20
+set conceallevel=2
+set concealcursor=vin
 
 "set noequalalways
 "set winheight=9999
@@ -286,6 +292,9 @@ map <silent> <F8> <Esc>:cnext<CR>
 map <C-c>m :Mark <C-R>=expand("<cword>")<CR><CR>
 map <C-c>mc :MarkClear <CR>
 
+map <C-c>f :FufTag <CR>
+map <C-c>ff :FufTag <C-R>=expand("<cword>")<CR><CR>
+
 vnoremap > >gv
 vnoremap < <gv
 
@@ -391,6 +400,8 @@ nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 nnoremap <leader>gt :YcmCompleter GoTo<CR>
 nnoremap <leader>gdd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gde :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gdt :YcmCompleter GetType<CR>
+nnoremap <leader>gdp :YcmCompleter GetParent<CR>
 
 let g:ycm_filetype_whitelist = { '*': 1 }
 let g:ycm_filetype_blacklist = {
@@ -408,12 +419,12 @@ let g:ycm_filetype_blacklist = {
 
 let g:ycm_warning_symbol = '!!'
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_comments = 0
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_autoclose_preview_window_after_completion = 0
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 0
-let g:ycm_seed_identifiers_with_syntax = 0
+let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_key_list_select_completion=['<Down>']
 let g:ycm_key_list_previous_completion=['<Up>']
