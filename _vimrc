@@ -15,7 +15,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'octol/vim-cpp-enhanced-highlight'
+"Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'actionshrimp/vim-xpath'
 Bundle 'SirVer/ultisnips'
@@ -27,6 +27,14 @@ Bundle 'vim-scripts/Gundo'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'mhinz/vim-signify'
+Plugin 'jeaye/color_coded'
+Bundle 'rdnetto/YCM-Generator'
+
+"Bundle 'rhysd/vim-clang-format'
+"Bundle 'tomtom/quickfixsigns_vim'
+"Bundle 'scrooloose/syntastic'
+"Bundle 'mbbill/undotree'
 
 " vim.org
 Bundle 'c.vim'
@@ -165,7 +173,8 @@ if has ("gui_running")
 	set noguipty
 	"подсветка текущей строки
 	set cursorline
-	colorscheme darkspectrum
+	"colorscheme darkspectrum
+	colorscheme twilighted
 "	colorscheme slate
 	set guifont=Terminus\ 12
 endif
@@ -479,9 +488,32 @@ let g:proj_window_width = 50
 highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
 
-" Set &printoptions to include papersize
+let g:signify_vcs_list = [ 'git' ]
+"let g:signify_disable_by_default = 1
 
-" Set &printoptions to include papersize
+let g:cpp_class_scope_highlight = 0
+let g:cpp_experimental_template_highlight = 1
+
+let g:color_coded_enabled = 1
+let g:color_coded_filetypes = ['c', 'cpp']
+hi link StructDecl Type
+hi link UnionDecl Type
+hi link ClassDecl Type
+hi link EnumDecl Type
+hi link VarDecl Type
+hi link ParmDecl Type
+hi link UnexposedDecl Type
+hi link TypedefDecl Type
+hi link CXXMethod  Type
+hi link Namespace Type
+hi link Constructor Type
+hi link Destructor Type
+
+hi Member " Any non-static member variable
+hi Variable " Any non-member variable
+hi Namespace
+hi EnumConstant
+
 if filereadable("/etc/papersize")
     let s:papersize = matchstr(system('/bin/cat /etc/papersize'), '\p*')
     if strlen(s:papersize)
