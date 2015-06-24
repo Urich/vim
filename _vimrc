@@ -101,10 +101,16 @@ set clipboard=unnamedplus
 set tabpagemax=20
 set nocompatible
 set nu                                   "отображать номера строк"
+
 set foldenable
 set foldmethod=syntax
 set foldcolumn=10
-"set foldlevelstart=1
+set foldnestmax=5 						"вложеность фолдеров
+set foldlevelstart=1
+":let c_no_comment_fold=0
+:let c_comment_strings=1
+:let ch_syntax_for_h=1
+
 set ch=1
 set laststatus=1
 set nocp
@@ -202,7 +208,7 @@ hi User2 guifg=Red
 augroup fswitch-autocommands
 	au BufEnter *.cpp let b:fswitchdst  = 'h,hpp'
 	au BufEnter *.cpp let b:fswitchlocs = './,./include/,../include'
-        au BufEnter *.h let b:fswitchdst  = 'c,cpp'
+    au BufEnter *.h let b:fswitchdst  = 'c,cpp'
 	au BufEnter *.h let b:fswitchlocs = '../src,../,./'
 augroup END
 
@@ -479,4 +485,8 @@ set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
+
+"highlight Folded guibg=grey guifg=blue
+"highlight FoldColumn guibg=darkgrey guifg=white
+
 
