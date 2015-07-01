@@ -128,3 +128,9 @@ hi TabLineFill	guifg=#535353 guibg=#202020 gui=none
 hi TabLineSel	guifg=#FFFFFF gui=bold
 "hi TabLineSel	guifg=#FFFFFF guibg=#000000 gui=bold
 " vim: sw=4 ts=4
+"
+
+"hi Member guifg=#ad7fa8
+"hi Variable guifg=#ad7fa8 gui=none
+"hi Namespace guifg=#ad7fa8 gui=none
+"hi EnumConstant guifg=#ad7fa8 gui=none

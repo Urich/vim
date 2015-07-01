@@ -15,7 +15,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
-"Bundle 'octol/vim-cpp-enhanced-highlight'
+Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'actionshrimp/vim-xpath'
 Bundle 'SirVer/ultisnips'
@@ -27,15 +27,17 @@ Bundle 'vim-scripts/Gundo'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'mhinz/vim-signify'
-Plugin 'jeaye/color_coded'
-Bundle 'rdnetto/YCM-Generator'
+"Bundle 'mhinz/vim-signify'
+"Plugin 'jeaye/color_coded'
+"Bundle 'rdnetto/YCM-Generator'
+Bundle 'Valloric/YouCompleteMe'
 
 "Bundle 'rhysd/vim-clang-format'
 "Bundle 'tomtom/quickfixsigns_vim'
 "Bundle 'scrooloose/syntastic'
 "Bundle 'mbbill/undotree'
-
+"Bundle 'SkidanovAlex/CtrlK'
+"
 " vim.org
 Bundle 'c.vim'
 Bundle 'FSwitch'
@@ -51,8 +53,6 @@ Bundle 'DfrankUtil'
 Bundle 'grep.vim'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-"Bundle 'SkidanovAlex/CtrlK'
-Bundle 'Valloric/YouCompleteMe'
 
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
@@ -124,7 +124,7 @@ set ch=1
 set laststatus=1
 set nocp
 set ft=bash
-"set completeopt=menu,longest
+set completeopt=menuone
 "set completeopt=menu,preview
 "set wildmode=longest,list:longest
 "set completeopt=menuone,menu,longest,preview
@@ -138,10 +138,15 @@ set nowb
 set noswapfile
 set pumheight=20
 
-set completeopt=menu,menuone
+"set completeopt=menuone
 set pumheight=20
 set conceallevel=2
 set concealcursor=vin
+
+" conceal in insert (i), normal (n) and visual (v) modes
+"set concealcursor=inv
+" hide concealed text completely unless replacement character is defined
+"set conceallevel=2
 
 "set noequalalways
 "set winheight=9999
@@ -149,9 +154,6 @@ set concealcursor=vin
 set iskeyword=@,48-57,_,192-255
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
-
-"set statusline=%<%1*%f%h%m%r%*\ %b\ %2*%{&encoding}%*\ \ %l,%c\ %P
-"set statusline=%{tagbar#currenttag('[%s]','notfound','s')}
 
 if has ("gui_running")
 	set list
@@ -173,8 +175,8 @@ if has ("gui_running")
 	set noguipty
 	"подсветка текущей строки
 	set cursorline
-	"colorscheme darkspectrum
-	colorscheme twilighted
+	colorscheme darkspectrum
+	"colorscheme twilighted
 "	colorscheme slate
 	set guifont=Terminus\ 12
 endif
@@ -347,9 +349,6 @@ set path=.,**,/usr/inlcude,../include,../src,./include,/usr/local/include
 set foldopen-=search
 "set include=^\\s*#\\s*include\ \\(<boost/\\)\\@!
 
-"hi link MBEVisibleChanged Error
-"hi MBEChanged guibg=darkblue ctermbg=darkblue
-
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
 let g:tagbar_autofocus = 1
@@ -360,9 +359,6 @@ let g:tagbar_autoshowtag = 1
 let g:tagbar_show_visibility = 1
 let g:tagbar_show_linenumbers = 1
 let g:tagbar_autopreview = 0
-
-" формат строки с ошибкой для gcc и sdcc, это нужно для errormarker
-"let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 
 let g:bufExplorerFindActive=1
 let g:bufExplorerShowDirectories=0
@@ -379,16 +375,10 @@ let g:gundo_right = 0
 
 "imap <F6>:call ClangUpdateQuickFix()<CR>
 
-" conceal in insert (i), normal (n) and visual (v) modes
-"set concealcursor=inv
-" hide concealed text completely unless replacement character is defined
-"set conceallevel=0
-
 let g:clang_user_options='-std=c++x11'
 ""let g:clang_user_options = '-std=c++0x -x c++ 2> NUL || exit 0"
 "let g:clang_user_options = '-x c++ || exit 0'
 let g:clang_debug=0
-"let g:clang_auto_user_options=""
 let g:clang_auto_user_options="path,.clang_complete"
 let g:clang_auto_select=0
 let g:clang_complete_auto=0
@@ -409,7 +399,6 @@ let g:clang_trailing_placeholder=1
 let g:clang_jumpto_declaration_key="<C-[>"
 "let g:clang_jumpto_back_key="<M-b>"
 
-let g:ycm_auto_trigger = 0
 highlight YcmErrorLine guibg=#3f0000
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 nnoremap <leader>gt :YcmCompleter GoTo<CR>
@@ -432,21 +421,22 @@ let g:ycm_filetype_blacklist = {
         \ 'project' : 1
         \}
 
+let g:ycm_auto_trigger = 0
 let g:ycm_warning_symbol = '!!'
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_complete_in_comments = 0
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 0
-let g:ycm_seed_identifiers_with_syntax = 1
+"let g:ycm_complete_in_comments = 0
+"let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_add_preview_to_completeopt = 0
+"let g:ycm_autoclose_preview_window_after_completion = 0
+"let g:ycm_autoclose_preview_window_after_insertion = 0
+"let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_key_list_select_completion=['<Down>']
 let g:ycm_key_list_previous_completion=['<Up>']
-"let g:ycm_key_list_select_completion = [‘<c-tab>’, ‘<Down>’]
-"let g:ycm_key_list_previous_completion = [‘<c-s-tab>’, ‘<Up>’]
-let g:ycm_use_ultisnips_completer = 1
-let g:ycm_always_populate_location_list = 0
+""let g:ycm_key_list_select_completion = [‘<c-tab>’, ‘<Down>’]
+""let g:ycm_key_list_previous_completion = [‘<c-s-tab>’, ‘<Up>’]
+let g:ycm_use_ultisnips_completer = 0
+let g:ycm_always_populate_location_list = 1
 
 let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsExpandTrigger = "<s-tab>"
@@ -485,34 +475,16 @@ let g:multi_cursor_exit_from_insert_mode=1
 
 let g:proj_window_width = 50
 
-highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
-highlight link multiple_cursors_visual Visual
+"highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
+"highlight link multiple_cursors_visual Visual
 
-let g:signify_vcs_list = [ 'git' ]
+"let g:signify_vcs_list = [ 'git' ]
 "let g:signify_disable_by_default = 1
 
-let g:cpp_class_scope_highlight = 0
-let g:cpp_experimental_template_highlight = 1
-
-let g:color_coded_enabled = 1
-let g:color_coded_filetypes = ['c', 'cpp']
-hi link StructDecl Type
-hi link UnionDecl Type
-hi link ClassDecl Type
-hi link EnumDecl Type
-hi link VarDecl Type
-hi link ParmDecl Type
-hi link UnexposedDecl Type
-hi link TypedefDecl Type
-hi link CXXMethod  Type
-hi link Namespace Type
-hi link Constructor Type
-hi link Destructor Type
-
-hi Member " Any non-static member variable
-hi Variable " Any non-member variable
-hi Namespace
-hi EnumConstant
+"let g:cpp_class_scope_highlight = 0
+"let g:cpp_experimental_template_highlight = 1
+"let g:color_coded_enabled = 1
+"let g:color_coded_filetypes = ['c', 'cpp']
 
 if filereadable("/etc/papersize")
     let s:papersize = matchstr(system('/bin/cat /etc/papersize'), '\p*')
@@ -524,10 +496,10 @@ endif
 
 set printdevice="HP_LaserJet_Professional_P1102"
 
-set keymap=russian-jcukenwin
-set iminsert=0
-set imsearch=0
-highlight lCursor guifg=NONE guibg=Cyan
+"set keymap=russian-jcukenwin
+"set iminsert=0
+"set imsearch=0
+"highlight lCursor guifg=NONE guibg=Cyan
 
 "highlight Folded guibg=grey guifg=blue
 "highlight FoldColumn guibg=darkgrey guifg=white
