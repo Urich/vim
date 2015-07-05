@@ -12,7 +12,7 @@ Bundle 'gmarik/vundle'
 
 " My Bundles here:
 " repos on github
-"Bundle 'Rip-Rip/clang_complete'
+Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'octol/vim-cpp-enhanced-highlight'
@@ -20,7 +20,7 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'actionshrimp/vim-xpath'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
-Bundle 'xolox/vim-session'
+"Bundle 'xolox/vim-session'
 Bundle 'MattesGroeger/vim-bookmarks'
 Bundle 'xolox/vim-misc'
 Bundle 'vim-scripts/Gundo'
@@ -30,7 +30,8 @@ Bundle 'airblade/vim-gitgutter'
 "Bundle 'mhinz/vim-signify'
 "Plugin 'jeaye/color_coded'
 "Bundle 'rdnetto/YCM-Generator'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
+
 
 "Bundle 'rhysd/vim-clang-format'
 "Bundle 'tomtom/quickfixsigns_vim'
@@ -291,7 +292,7 @@ imap <F4> <esc>:CtrlPBuffer<cr>
 
 nnoremap <C-h> :GundoToggle<CR>
 
-"imap <C-Space> <c-x><c-u>
+imap <C-Space> <c-x><c-u>
 
 map <F10> :NERDTreeToggle<cr>
 vmap <F10> <esc>:NERDTreeToggle<cr>
@@ -323,6 +324,14 @@ vnoremap < <gv
 "inoremap <S-Tab> <C-D>
 "vnoremap <Tab> >gv
 "vnoremap <S-Tab> <gv
+
+nmap <C-b>b <Plug>BookmarkToggle
+nmap <Leader>i <Plug>BookmarkAnnotate
+nmap <C-b>a <Plug>BookmarkShowAll
+nmap <Leader>j <Plug>BookmarkNext
+nmap <Leader>k <Plug>BookmarkPrev
+nmap <Leader>c <Plug>BookmarkClear
+nmap <Leader>x <Plug>BookmarkClearAll
 
 " for plugin nerdtree
 autocmd vimenter * if !argc() | NERDTree | endif
@@ -426,7 +435,7 @@ let g:ycm_warning_symbol = '!!'
 let g:ycm_confirm_extra_conf = 0
 "let g:ycm_complete_in_comments = 0
 "let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_add_preview_to_completeopt = 0
+"let g:ycm_add_preview_to_completeopt = 0
 "let g:ycm_autoclose_preview_window_after_completion = 0
 "let g:ycm_autoclose_preview_window_after_insertion = 0
 "let g:ycm_seed_identifiers_with_syntax = 1
@@ -435,8 +444,8 @@ let g:ycm_key_list_select_completion=['<Down>']
 let g:ycm_key_list_previous_completion=['<Up>']
 ""let g:ycm_key_list_select_completion = [‘<c-tab>’, ‘<Down>’]
 ""let g:ycm_key_list_previous_completion = [‘<c-s-tab>’, ‘<Up>’]
-let g:ycm_use_ultisnips_completer = 0
-let g:ycm_always_populate_location_list = 1
+"let g:ycm_use_ultisnips_completer = 0
+"let g:ycm_always_populate_location_list = 1
 
 let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsExpandTrigger = "<s-tab>"
@@ -474,6 +483,12 @@ let g:multi_cursor_exit_from_visual_mode=1
 let g:multi_cursor_exit_from_insert_mode=1
 
 let g:proj_window_width = 50
+
+let g:bookmark_manage_per_buffer = 1
+let g:bookmark_auto_save_file = '~/.vim/bookmarks'
+let g:bookmark_highlight_lines = 1
+let g:bookmark_no_default_key_mappings = 0
+let g:bookmark_auto_save = 1
 
 "highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 "highlight link multiple_cursors_visual Visual
