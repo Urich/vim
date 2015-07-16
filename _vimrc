@@ -336,14 +336,13 @@ nmap <Leader>c <Plug>BookmarkClear
 nmap <Leader>x <Plug>BookmarkClearAll
 
 " for plugin nerdtree
-autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd vimenter * if !argc() | NERDTree | endif
 let g:NERDTreeWinSize = 35
-" Set the window position
 let g:NERDTreeWinPos = "right"
-" Auto centre
 let g:NERDTreeAutoCenter = 0
-" Not Highlight the cursor line
-let g:NERDTreeHighlightCursorline = 0
+let g:NERDTreeHighlightCursorline = 1
+let g:NERDTreeChDirMode = 1
+let g:NERDTreeShowHidden = 1
 let NERDTreeIgnore=['.*\.o$']
 let NERDTreeIgnore+=['.*\~$']
 let NERDTreeIgnore+=['.*\.out$']
