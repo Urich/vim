@@ -16,8 +16,8 @@ Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'octol/vim-cpp-enhanced-highlight'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'actionshrimp/vim-xpath'
+"Bundle 'terryma/vim-multiple-cursors'
+"Bundle 'actionshrimp/vim-xpath'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 "Bundle 'xolox/vim-session'
@@ -27,11 +27,11 @@ Bundle 'vim-scripts/Gundo'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
+
 "Bundle 'mhinz/vim-signify'
 "Plugin 'jeaye/color_coded'
 "Bundle 'rdnetto/YCM-Generator'
 "Bundle 'Valloric/YouCompleteMe'
-
 
 "Bundle 'rhysd/vim-clang-format'
 "Bundle 'tomtom/quickfixsigns_vim'
@@ -326,12 +326,12 @@ vnoremap < <gv
 "vnoremap <S-Tab> <gv
 
 nmap <C-b>b <Plug>BookmarkToggle
-nmap <Leader>i <Plug>BookmarkAnnotate
+nmap <C-b>i <Plug>BookmarkAnnotate
 nmap <C-b>a <Plug>BookmarkShowAll
-nmap <Leader>j <Plug>BookmarkNext
-nmap <Leader>k <Plug>BookmarkPrev
-nmap <Leader>c <Plug>BookmarkClear
-nmap <Leader>x <Plug>BookmarkClearAll
+nmap <C-b>n <Plug>BookmarkNext
+nmap <C-b>p <Plug>BookmarkPrev
+"nmap <Leader>c <Plug>BookmarkClear
+"nmap <Leader>x <Plug>BookmarkClearAll
 
 " for plugin nerdtree
 autocmd vimenter * if !argc() | NERDTree | endif
@@ -485,10 +485,11 @@ let g:multi_cursor_exit_from_insert_mode=1
 let g:proj_window_width = 50
 
 let g:bookmark_manage_per_buffer = 1
-let g:bookmark_auto_save_file = '~/.vim/bookmarks'
+"let g:bookmark_auto_save_file = '~/.vim/bookmarks'
 let g:bookmark_highlight_lines = 1
 let g:bookmark_no_default_key_mappings = 0
 let g:bookmark_auto_save = 1
+let g:bookmark_save_per_working_dir = 1
 
 "highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 "highlight link multiple_cursors_visual Visual
