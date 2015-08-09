@@ -12,13 +12,13 @@ Bundle 'gmarik/vundle'
 
 " My Bundles here:
 " repos on github
-Bundle 'Rip-Rip/clang_complete'
+"Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'terryma/vim-multiple-cursors'
 "Bundle 'actionshrimp/vim-xpath'
-Bundle 'SirVer/ultisnips'
+"Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 "Bundle 'xolox/vim-session'
 Bundle 'MattesGroeger/vim-bookmarks'
@@ -32,7 +32,7 @@ Bundle 'bruno-/vim-man'
 "Bundle 'mhinz/vim-signify'
 "Plugin 'jeaye/color_coded'
 "Bundle 'rdnetto/YCM-Generator'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 
 
 "Bundle 'rhysd/vim-clang-format'
@@ -130,7 +130,7 @@ set ft=bash
 set completeopt=menuone
 "set completeopt=menu,preview
 "set wildmode=longest,list:longest
-"set completeopt=menuone,menu,longest,preview
+"set completeopt=menuone,menu,longest
 set autoread
 "let mapleader = ","
 set cmdheight=2
@@ -144,10 +144,10 @@ set pumheight=20
 "set completeopt=menuone
 set pumheight=20
 set conceallevel=2
-set concealcursor=vin
+"set concealcursor=vin
 
 " conceal in insert (i), normal (n) and visual (v) modes
-"set concealcursor=inv
+set concealcursor=inv
 " hide concealed text completely unless replacement character is defined
 "set conceallevel=2
 
@@ -192,27 +192,10 @@ if has("cscope")
 	set csto=0
 	set cst
 	set nocsverb
-	cs add ~/.cscope.vim/usc/cscope.out
+"	cs add ~/.cscope.vim/usc/cscope.out
 "	cs add ~/.cscope.vim/usr/cscope.out
-	set cscopequickfix=s-,c-,d-,i-,t-,e-
+"	set cscopequickfix=s-,c-,d-,i-,t-,e-
 
-	nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space>g :scs find g <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space>c :scs find c <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space>t :scs find t <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space>e :scs find e <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-Space>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
-	nmap <C-Space>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-	nmap <C-Space>d :scs find d <C-R>=expand("<cword>")<CR><CR>
-
-	nmap <C-g>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-g>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-g>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-g>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-g>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-	nmap <C-g>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-	nmap <C-g>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-	nmap <C-g>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 
 "set tags+=~/.tags/usc.tags
@@ -279,14 +262,14 @@ imap <C-c>1 <ESC>:FSHere<CR><Insert>
 map <C-c>2 :FSSplitRight<CR>
 imap <C-c>2 <ESC>:FSSplitRight<CR><Insert>
 
-map <C-c>3 :FSSplitLeft<CR>
-imap <C-c>3 <ESC>:FSSplitLeft<CR><Insert>
+map <C-c>3 :FSLeft<CR>
+imap <C-c>3 <ESC>:FSLeft<CR><Insert>
 
 map <C-c>4 :FSSplitBelow<CR>
 imap <C-c>4 <ESC>:FSSplitBelow<CR><Insert>
 
-nmap <silent> <F3> :TagbarOpen fj<CR>
-imap <silent> <F3> <ESC>:TagbarOpen fj<CR>
+nmap <silent> <F3> :TagbarToggle<CR>
+imap <silent> <F3> <ESC>:TagbarToggle<CR>
 
 map <F4> :CtrlPBuffer<cr>
 vmap <F4> <esc>:CtrlPBuffer<cr>
@@ -294,7 +277,7 @@ imap <F4> <esc>:CtrlPBuffer<cr>
 
 nnoremap <C-h> :GundoToggle<CR>
 
-imap <C-Space> <c-x><c-u>
+"imap <C-Space> <c-x><c-u>
 
 map <F10> :NERDTreeToggle<cr>
 vmap <F10> <esc>:NERDTreeToggle<cr>
@@ -303,8 +286,8 @@ imap <F10> <esc>:NERDTreeToggle<cr>
 "map <F11> :Project<cr>
 "vmap <F11> <esc>:Project<cr>
 "imap <F11> <esc>:Project<cr>
-nmap <silent> <F11> <Plug>ToggleProject
-map <silent> <F11> <Plug>ToggleProject
+nmap <F11> <Plug>ToggleProject
+map <F11> <Plug>ToggleProject
 
 map <silent> <F7> <Esc>:cprevious<CR>
 map <silent> <F8> <Esc>:cnext<CR>
@@ -317,6 +300,17 @@ map <C-c>ff :FufTag <C-R>=expand("<cword>")<CR><CR>
 
 vnoremap > >gv
 vnoremap < <gv
+
+nnoremap d "_d
+vnoremap d "_d
+nnoremap dd "_dd
+vnoremap dd "_dd
+nnoremap <Del> "_x
+vnoremap <Del> "_x
+"nnoremap c "0c
+"vnoremap c "0c
+"nnoremap p "0p
+"vnoremap p "0p
 
 "inoremap <F5> :call g:ClangUpdateQuickFix()<CR>
 "noremap <F5> :call g:ClangUpdateQuickFix()<CR>
@@ -336,7 +330,7 @@ nmap <Leader>c <Plug>BookmarkClear
 nmap <Leader>x <Plug>BookmarkClearAll
 
 " for plugin nerdtree
-autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd vimenter * if !argc() | NERDTree | endif
 let g:NERDTreeWinSize = 35
 " Set the window position
 let g:NERDTreeWinPos = "right"
@@ -370,6 +364,9 @@ let g:tagbar_autoshowtag = 1
 let g:tagbar_show_visibility = 1
 let g:tagbar_show_linenumbers = 1
 let g:tagbar_autopreview = 0
+let g:tagbar_indent = 1
+let g:tagbar_show_linenumbers = 2
+let g:tagbar_foldlevel = 2
 
 let g:bufExplorerFindActive=1
 let g:bufExplorerShowDirectories=0
@@ -448,6 +445,8 @@ let g:ycm_key_list_previous_completion=['<Up>']
 ""let g:ycm_key_list_previous_completion = [‘<c-s-tab>’, ‘<Up>’]
 "let g:ycm_use_ultisnips_completer = 0
 "let g:ycm_always_populate_location_list = 1
+let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_key_detailed_diagnostics = '<leader>d'
 
 let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsExpandTrigger = "<s-tab>"
@@ -467,8 +466,12 @@ let g:manpageview_init_i    = "call ManPageInfoInit()"
 
 let g:session_autosave = 'no'
 
-let g:indexer_ctagsCommandLineOptions = "--c++-kinds=+p+l --fields=+iaSl --extra=+q"
-let g:indexer_disableCtagWarning=1
+"--c++-kinds=+p+l --fields=+iaS --extra=+q"
+"let g:indexer_ctagsCommandLineOptions = "--c++-kinds=+p+l --fields=+iaSl --extra=+q"
+let g:indexer_disableCtagsWarning=1
+"let g:indexer_debugLogFilename="~/index_debug"
+"let g:indexer_debugLogLevel=3
+
 
 autocmd BufRead,BufNewFile  *.cpp  set filetype=cpp
 
@@ -485,6 +488,7 @@ let g:multi_cursor_exit_from_visual_mode=1
 let g:multi_cursor_exit_from_insert_mode=1
 
 let g:proj_window_width = 50
+let g:proj_flags="imstcF"
 
 let g:bookmark_manage_per_buffer = 1
 let g:bookmark_auto_save_file = '~/.vim/bookmarks'

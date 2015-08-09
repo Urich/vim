@@ -60,9 +60,7 @@ flags = [
 '-x',
 'c++',
 '-I',
-'./include',
-'-I',
-'../common',
+'include'
 ]
 
 
