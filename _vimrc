@@ -17,8 +17,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'terryma/vim-multiple-cursors'
-"Bundle 'actionshrimp/vim-xpath'
-"Bundle 'SirVer/ultisnips'
+Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 "Bundle 'xolox/vim-session'
 Bundle 'MattesGroeger/vim-bookmarks'
@@ -28,12 +27,14 @@ Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'bruno-/vim-man'
+Bundle 'sukima/xmledit'
 
 "Bundle 'mhinz/vim-signify'
 "Plugin 'jeaye/color_coded'
 "Bundle 'rdnetto/YCM-Generator'
 Bundle 'Valloric/YouCompleteMe'
-
+Bundle 'Valloric/MatchTagAlways'
+Bundle 'actionshrimp/vim-xpath'
 
 "Bundle 'rhysd/vim-clang-format'
 "Bundle 'tomtom/quickfixsigns_vim'
@@ -47,7 +48,7 @@ Bundle 'FSwitch'
 Bundle 'Mark'
 Bundle 'Tagbar'
 Bundle 'SuperTab'
-Bundle 'xmledit'
+"Bundle 'xmledit'
 Bundle 'TagHighlight'
 Bundle 'indexer.tar.gz'
 Bundle 'project.tar.gz'
@@ -140,22 +141,16 @@ set magic
 set nowb
 set noswapfile
 set pumheight=20
+set cursorline
 
-"set completeopt=menuone
 set pumheight=20
 set conceallevel=2
-"set concealcursor=vin
-
-" conceal in insert (i), normal (n) and visual (v) modes
 set concealcursor=inv
-" hide concealed text completely unless replacement character is defined
-"set conceallevel=2
 
 "set noequalalways
 "set winheight=9999
 " настраиваю для работы с русскими словами (чтобы w, b, * понимали" русские слова)
 set iskeyword=@,48-57,_,192-255
-
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
 if has ("gui_running")
@@ -217,13 +212,16 @@ augroup END
 
 au BufRead,BufNewFile *.cpp,*.h set filetype=cpp
 
-"let g:xml_syntax_folding=1
-"au FileType xml setlocal foldmethod=syntax
+"folding xml
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
+"format xml
+au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+
 " save folding state
 "au BufWinLeave * mkview
 "au BufWinEnter * silent loadview
 "
-set cursorline
 "set cursorcolumn
 hi CursorLine term=bold cterm=bold guibg=Grey40
 "hi CursorColumn term=bold cterm=bold guibg=Grey40
@@ -516,13 +514,3 @@ if filereadable("/etc/papersize")
 endif
 
 set printdevice="HP_LaserJet_Professional_P1102"
-
-"set keymap=russian-jcukenwin
-"set iminsert=0
-"set imsearch=0
-"highlight lCursor guifg=NONE guibg=Cyan
-
-"highlight Folded guibg=grey guifg=blue
-"highlight FoldColumn guibg=darkgrey guifg=white
-
-
