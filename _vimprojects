@@ -1,4 +1,8 @@
 
+server=~/develop/project/usc/framework flags=r {
+	CMakeLists.txt
+}
+
 server=~/develop/project/usc/server flags=r {
 	CMakeLists.txt
 	sources=./src filter="*.cpp" {

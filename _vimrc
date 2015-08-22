@@ -18,7 +18,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'terryma/vim-multiple-cursors'
 "Bundle 'actionshrimp/vim-xpath'
-"Bundle 'SirVer/ultisnips'
+Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 "Bundle 'xolox/vim-session'
 Bundle 'MattesGroeger/vim-bookmarks'
@@ -28,6 +28,7 @@ Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'bruno-/vim-man'
+Bundle 'powerman/vim-plugin-ruscmd'
 
 "Bundle 'mhinz/vim-signify'
 "Plugin 'jeaye/color_coded'
@@ -155,8 +156,12 @@ set concealcursor=inv
 "set winheight=9999
 " настраиваю для работы с русскими словами (чтобы w, b, * понимали" русские слова)
 set iskeyword=@,48-57,_,192-255
-
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+
+set noguipty
+set cursorline
+colorscheme darkspectrum
+set guifont=Terminus\ 12
 
 if has ("gui_running")
 	set list
@@ -172,16 +177,6 @@ if has ("gui_running")
 	set guioptions+=c
 	"антиалиасинг для шревтоф
 	set antialias
-	"прячем курсор
-"	set mousehide
-	"Так не выводятся ненужные escape последовательности в :shell
-	set noguipty
-	"подсветка текущей строки
-	set cursorline
-	colorscheme darkspectrum
-	"colorscheme twilighted
-"	colorscheme slate
-	set guifont=Terminus\ 12
 endif
 
 
@@ -448,7 +443,7 @@ let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_key_detailed_diagnostics = '<leader>d'
 
-let g:UltiSnipsUsePythonVersion = 2
+"let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsExpandTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets = "<c-l>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
