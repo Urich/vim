@@ -29,6 +29,8 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'bruno-/vim-man'
 Bundle 'sukima/xmledit'
 Bundle 'powerman/vim-plugin-ruscmd'
+Bundle 'edkolev/promptline.vim'
+Bundle 'itchyny/lightline.vim'
 
 "Bundle 'mhinz/vim-signify'
 "Plugin 'jeaye/color_coded'
@@ -164,7 +166,6 @@ if has ("gui_running")
 	set guioptions+=c
 	"антиалиасинг для шревтоф
 	set antialias
-	
 endif
 
 
@@ -482,6 +483,16 @@ let g:bookmark_auto_save_file = '~/.vim/bookmarks'
 let g:bookmark_highlight_lines = 1
 let g:bookmark_no_default_key_mappings = 0
 let g:bookmark_auto_save = 1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+"let g:lightline = {
+"      \ 'colorscheme': 'wombat',
+"      \ }
+"let g:promptline_theme = 'airline'
+"let g:promptline_preset = 'full'
 
 "highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 "highlight link multiple_cursors_visual Visual
