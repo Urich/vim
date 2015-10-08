@@ -29,7 +29,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'bruno-/vim-man'
 Bundle 'sukima/xmledit'
 Bundle 'powerman/vim-plugin-ruscmd'
-
+Bundle 'klen/python-mode'
 "Bundle 'mhinz/vim-signify'
 "Plugin 'jeaye/color_coded'
 "Bundle 'rdnetto/YCM-Generator'
@@ -205,6 +205,7 @@ let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
 "format xml
 au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+au FileType html exe ":silent %!xmllint --format --html --recover - 2>/dev/null"
 
 " save folding state
 "au BufWinLeave * mkview
@@ -435,7 +436,7 @@ let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_key_detailed_diagnostics = '<leader>d'
 
-"let g:UltiSnipsUsePythonVersion = 2
+let g:UltiSnipsUsePythonVersion = 3
 let g:UltiSnipsExpandTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets = "<c-l>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
@@ -504,4 +505,8 @@ endif
 
 set printdevice="HP_LaserJet_Professional_P1102"
 
+
+let g:pymode_python = 'python3'
+let g:pymode_warnings = 1
+let g:pymode_folding = 1
 
