@@ -25,6 +25,7 @@ Bundle 'itchyny/lightline.vim'
 Bundle 'actionshrimp/vim-xpath'
 Bundle 'terryma/vim-multiple-cursors'
 Plugin 'lyuts/vim-rtags'
+Bundle 'klen/python-mode'
 
 " vim.org
 Bundle 'project.tar.gz'
@@ -141,6 +142,7 @@ let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
 "format xml
 au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+au FileType html exe ":silent %!xmllint --format --html --recover - 2>/dev/null"
 
 augroup myvimrc
 	au!
@@ -378,3 +380,8 @@ if filereadable("/etc/papersize")
 endif
 
 set printdevice="HP_LaserJet_Professional_P1102"
+
+#python
+let g:pymode_python = 'python3'
+let g:pymode_warnings = 1
+let g:pymode_folding = 1

@@ -1,4 +1,14 @@
 
+test=~/develop/project/test flags=r {
+	test_wchar_t.cpp
+	t.py
+}
+
+autoru=~/develop/project/autoru flags=r {
+	autoru.py
+	run.sh
+}
+
 server=~/develop/project/usc/framework flags=r {
 	CMakeLists.txt
 }
@@ -62,6 +72,7 @@ client=~/develop/project/usc flags=r {
 			widget_base.h
 			widget_handler.h
 			datamodels.h
+			uscwidgets.h
 		}
 	}
 }
@@ -98,6 +109,7 @@ libsystem=~/develop/project/usc/libsystem flags=r {
 		datasource.h
 		protocols.h
 		protocol_data.h
+		uscsystem.h
 	}
 	unittest=./test	{
 		main.cpp
@@ -122,6 +134,7 @@ libplatform=~/develop/project/usc/libplatform flags=r {
 		message.h
 		actions.h
 		platform.h
+		uscplatform.h
 		queue.h
 		thread.h
 		type_any.h
