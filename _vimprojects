@@ -2,6 +2,7 @@
 test=~/develop/project/test flags=r {
 	test_wchar_t.cpp
 	t.py
+	testexe.cpp
 }
 
 autoru=~/develop/project/autoru flags=r {
