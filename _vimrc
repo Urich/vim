@@ -385,3 +385,9 @@ set printdevice="HP_LaserJet_Professional_P1102"
 let g:pymode_python = 'python3'
 let g:pymode_warnings = 1
 let g:pymode_folding = 1
+let g:pymode_trim_whitespaces = 1
+let g:pymode_options_max_line_length = 255
+let g:pymode_options_colorcolumn = 0
+let g:pymode_indent = 1
+let g:pymode_run_bind = '<leader>r'
+

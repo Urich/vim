@@ -4,9 +4,10 @@ test=~/develop/project/test flags=r {
 	t.py
 }
 
-autoru=~/develop/project/autoru flags=r {
+autoru=~/develop/project/autoru {
 	autoru.py
-	run.sh
+	autorudb.py
+	run.py
 }
 
 server=~/develop/project/usc/framework flags=r {
