@@ -26,6 +26,8 @@ Bundle 'actionshrimp/vim-xpath'
 Bundle 'terryma/vim-multiple-cursors'
 Plugin 'lyuts/vim-rtags'
 Bundle 'klen/python-mode'
+Plugin 'elzr/vim-json'
+Plugin 'pangloss/vim-javascript'
 
 " vim.org
 Bundle 'project.tar.gz'
@@ -209,6 +211,8 @@ map <silent> <F8> <Esc>:cnext<CR>
 map <C-c>m :Mark <C-R>=expand("<cword>")<CR><CR>
 map <C-c>mc :MarkClear <CR>
 
+map <C-c>h :Man <C-R>=expand("<cword>")<CR><CR>
+
 map <C-c>f :FufTag <CR>
 map <C-c>ff :FufTag <C-R>=expand("<cword>")<CR><CR>
 
@@ -368,7 +372,8 @@ noremap <Leader>gr :call rtags#ReindexFile()<CR>
 noremap <Leader>gl :call rtags#ProjectList()<CR>
 noremap <Leader>gw :call rtags#RenameSymbolUnderCursor()<CR>
 noremap <Leader>gv :call rtags#FindVirtuals()<CR>
-"noremap 6 :call rtags#CompleteAtCursor()<CR>
+noremap <Leader>gc :call rtags#CompleteAtCursor()<CR>
+"set completefunc=RtagsCompleteFunc
 
 "PrinterHome
 if filereadable("/etc/papersize")
@@ -380,6 +385,10 @@ if filereadable("/etc/papersize")
 endif
 
 set printdevice="HP_LaserJet_Professional_P1102"
+
+" Javascript
+set regexpengine=1
+syntax enable
 
 "python
 let g:pymode_python = 'python3'
