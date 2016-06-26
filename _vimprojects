@@ -7,7 +7,6 @@ test=~/develop/project/test flags=r {
 
 autoru=~/develop/project/autoru {
 	autoru.py
-	autorudb.py
 	run.py
 }
 

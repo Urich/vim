@@ -28,6 +28,8 @@ Plugin 'lyuts/vim-rtags'
 Bundle 'klen/python-mode'
 Plugin 'elzr/vim-json'
 Plugin 'pangloss/vim-javascript'
+Plugin 'tyru/open-browser.vim'
+Plugin 'sjl/gundo.vim'
 
 " vim.org
 Bundle 'project.tar.gz'
@@ -40,10 +42,10 @@ Bundle 'FSwitch'
 Bundle 'Mark'
 Bundle 'Tagbar'
 "Bundle 'SuperTab'
-Bundle 'TagHighlight'
+"Bundle 'TagHighlight'
 Bundle 'grep.vim'
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+"Bundle 'L9'
+"Bundle 'FuzzyFinder'
 
 filetype on
 filetype plugin indent on
@@ -269,7 +271,7 @@ let g:clang_snippets_engine="ultisnips"
 let g:clang_conceal_snippets=1
 let g:clang_exec="clang++"
 let g:clang_use_library=1
-let g:clang_library_path="/usr/lib/llvm-3.5/lib"
+let g:clang_library_path="/usr/lib/"
 let g:clang_sort_algo="priority"
 let g:clang_complete_macros=1
 let g:clang_complete_patterns=1
@@ -360,19 +362,34 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 "rtags
 let g:rtagsUseDefaultMappings = 0
 noremap <Leader>gi :call rtags#SymbolInfo()<CR>
-noremap <Leader>gj :call rtags#JumpTo()<CR>
-noremap <Leader>gS :call rtags#JumpTo(" ")<CR>
-noremap <Leader>gV :call rtags#JumpTo("vert")<CR>
-noremap <Leader>gT :call rtags#JumpTo("tab")<CR>
+noremap <Leader>gj :call rtags#JumpTo(g:SAME_WINDOW)<CR>
+noremap <Leader>gJ :call rtags#JumpTo(g:SAME_WINDOW, 'declaration-only')<CR>
+noremap <Leader>gS :call rtags#JumpTo(g:H_SPLIT)<CR>
+noremap <Leader>gV :call rtags#JumpTo(g:V_SPLIT)<CR>
+noremap <Leader>gT :call rtags#JumpTo(g:NEW_TAB)<CR>
 noremap <Leader>gp :call rtags#JumpToParent()<CR>
 noremap <Leader>gf :call rtags#FindRefs()<CR>
-noremap <Leader>gn :call rtags#FindRefsByName(input("Pattern? ", "", "customlist,rtags#CompleteSymbols")<CR>
+noremap <Leader>gn :call rtags#FindRefsByName(input("Pattern? ", "", "customlist,rtags#CompleteSymbols"))<CR>
 noremap <Leader>gs :call rtags#FindSymbols(input("Pattern? ", "", "customlist,rtags#CompleteSymbols"))<CR>
 noremap <Leader>gr :call rtags#ReindexFile()<CR>
 noremap <Leader>gl :call rtags#ProjectList()<CR>
 noremap <Leader>gw :call rtags#RenameSymbolUnderCursor()<CR>
 noremap <Leader>gv :call rtags#FindVirtuals()<CR>
-noremap <Leader>gc :call rtags#CompleteAtCursor()<CR>
+noremap <Leader>gb :call rtags#JumpBack()<CR>
+"noremap <Leader>gi :call rtags#SymbolInfo()<CR>
+"noremap <Leader>gj :call rtags#JumpTo()<CR>
+"noremap <Leader>gS :call rtags#JumpTo(" ")<CR>
+"noremap <Leader>gV :call rtags#JumpTo("vert")<CR>
+"noremap <Leader>gT :call rtags#JumpTo("tab")<CR>
+"noremap <Leader>gp :call rtags#JumpToParent()<CR>
+"noremap <Leader>gf :call rtags#FindRefs()<CR>
+"noremap <Leader>gn :call rtags#FindRefsByName(input("Pattern? ", "", "customlist,rtags#CompleteSymbols")<CR>
+"noremap <Leader>gs :call rtags#FindSymbols(input("Pattern? ", "", "customlist,rtags#CompleteSymbols"))<CR>
+"noremap <Leader>gr :call rtags#ReindexFile()<CR>
+"noremap <Leader>gl :call rtags#ProjectList()<CR>
+"noremap <Leader>gw :call rtags#RenameSymbolUnderCursor()<CR>
+"noremap <Leader>gv :call rtags#FindVirtuals()<CR>
+"noremap <Leader>gc :call rtags#CompleteAtCursor()<CR>
 "set completefunc=RtagsCompleteFunc
 
 "PrinterHome
@@ -392,11 +409,24 @@ syntax enable
 
 "python
 let g:pymode_python = 'python3'
-let g:pymode_warnings = 1
+let g:pymode_warnings = 0
 let g:pymode_folding = 1
 let g:pymode_trim_whitespaces = 1
 let g:pymode_options_max_line_length = 255
 let g:pymode_options_colorcolumn = 0
 let g:pymode_indent = 1
 let g:pymode_run_bind = '<leader>r'
+let g:pymode_run = 1
+let g:pymode_breakpoint = 1
+let g:pymode_lint = 0
+let g:pymode_lint_ignore = "E501,W"
+let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime', 'sqlite3', 'bs4', 'requests']
+let g:pymode_lint_cwindow = 0
+let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_maxheight = 6
+let g:pymode_rope = 0
+
+"vim-cpp-enhanced-highlight
+let g:cpp_class_scope_highlight = 1
+let g:cpp_experimental_template_highlight = 1
 
